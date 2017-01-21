@@ -1,1 +1,9 @@
+title: Coding Notes
+description: Coding notes on Erlang, Elixir and Go
+twitter_username: niamtokik
 theme: jekyll-theme-minimal
+
+sass:
+  style: compressed
+
+url: "http://niamtokik.github.io"
