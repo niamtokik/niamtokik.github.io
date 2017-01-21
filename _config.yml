@@ -2,6 +2,7 @@ title: Coding Notes
 description: Coding notes on Erlang, Elixir and Go
 twitter_username: niamtokik
 theme: jekyll-theme-minimal
+baseurl:blog
 
 sass:
   style: compressed
