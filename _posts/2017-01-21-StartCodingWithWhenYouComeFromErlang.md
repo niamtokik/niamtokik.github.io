@@ -1,4 +1,6 @@
-# Coding in Go when you come from Erlang world
+---
+title: Coding in Go when you come from Erlang world
+---
 
 One or  two year ago,  I had  tried Go. After  one day, I  switched to
 another language. Sorry Go, if I want to write something similar to C,
