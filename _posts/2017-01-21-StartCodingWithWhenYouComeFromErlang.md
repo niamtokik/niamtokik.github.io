@@ -1,5 +1,7 @@
 ---
+layout: post
 title: Coding in Go when you come from Erlang world
+date: 2017-01-21
 ---
 
 One or  two year ago,  I had  tried Go. After  one day, I  switched to
