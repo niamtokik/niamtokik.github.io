@@ -1,14 +1,17 @@
 ---
 title: Coding Notes about Everything
 author: niamtokik
-layout: jekyll-theme-minimal
+layout: default
 ---
+
+<div id=header>
+</div>
 
 <div id=content>
 </div>
 
 <div id=posts>
   {% for post in site.posts %}
-  {{ post.date }}<br>  
+  {{ post.date }} | {{ post.title }} <br>  
   {% endfor %}
 </div>
