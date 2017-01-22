@@ -1,0 +1,11 @@
+---
+title: docs
+---
+
+<div id="docs">
+  <ul>
+  {% for doc in site.docs %}
+    <li><a href="{{ doc.url }}" title="{{ doc.title }}">{{ doc.title }}</a></li>
+  {% endfor %}
+  </ul>
+</div>
