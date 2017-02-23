@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"><channel><title>A Pelican Blog - Mathieu Kerjouan</title><link>/</link><description>test</description><lastBuildDate>Thu, 23 Feb 2017 00:00:00 +0000</lastBuildDate><item><title>Using Pelican on OpenBSD-current with Asciidoc and github.io</title><link>/openbsd-pelican-asciidoc.html</link><description>&lt;div class="sect1"&gt;
+&lt;h2 id="_required_packages"&gt;Required packages&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite --&gt;
+&lt;pre&gt;&lt;tt&gt;pkg_add py-virtualenv python-&lt;span style="color: #993399"&gt;2.7&lt;/span&gt; asciidoc&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_final_tree"&gt;Final tree&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite --&gt;
+&lt;pre&gt;&lt;tt&gt; repositories&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+   Makefile
+   pelicanconf&lt;span style="color: #990000"&gt;.&lt;/span&gt;py
+   pelicanconf_dev&lt;span style="color: #990000"&gt;.&lt;/span&gt;py
+   template&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+     page&lt;span style="color: #990000"&gt;.&lt;/span&gt;asciidoc
+     article&lt;span style="color: #990000"&gt;.&lt;/span&gt;asciidoc
+   niamtokik&lt;span style="color: #990000"&gt;.&lt;/span&gt;github&lt;span style="color: #990000"&gt;.&lt;/span&gt;io&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+   website&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+     content&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+       category&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+         &lt;span style="color: #990000"&gt;*.&lt;/span&gt;asciidoc
+       pages&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+         &lt;span style="color: #990000"&gt;*.&lt;/span&gt;asciidoc
+       &lt;span style="color: #990000"&gt;*.&lt;/span&gt;asciidoc
+   ---- virtualenv ----
+   bin&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+   include&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+   lib&lt;span style="color: #990000"&gt;/&lt;/span&gt;&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_initialize_repository_and_virtualenv"&gt;Initialize repository and virtualenv&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite --&gt;
+&lt;pre&gt;&lt;tt&gt;mkdir repositories
+cd repositories
+git clone https&lt;span style="color: #990000"&gt;:&lt;/span&gt;//github&lt;span style="color: #990000"&gt;.&lt;/span&gt;com/niamtokik/niamtokik …&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Mathieu Kerjouan</dc:creator><pubDate>Thu, 23 Feb 2017 00:00:00 +0000</pubDate><guid isPermaLink="false">tag:None,2017-02-23:/openbsd-pelican-asciidoc.html</guid><category>openbsd</category><category>pelican</category><category>python</category><category>coding</category></item></channel></rss>

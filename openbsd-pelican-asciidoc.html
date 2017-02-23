@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Using Pelican on OpenBSD-current with Asciidoc and github.io</title>
+        <link rel="stylesheet" href="./theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="A Pelican Blog Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="./">A Pelican Blog  <strong>test</strong></a></h1>
+                <nav><ul>
+                    <li class="active"><a href="./category/coding.html">coding</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="./openbsd-pelican-asciidoc.html" rel="bookmark"
+           title="Permalink to Using Pelican on OpenBSD-current with Asciidoc and github.io">Using Pelican on OpenBSD-current with Asciidoc and github.io</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2017-02-23T00:00:00+00:00">
+                Published: Thu 23 February 2017
+        </abbr>
+		<br />
+        <abbr class="modified" title="2017-02-23T00:00:00+00:00">
+                Updated: Thu 23 February 2017
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="./author/mathieu-kerjouan.html">Mathieu Kerjouan</a>
+        </address>
+<p>In <a href="./category/coding.html">coding</a>.</p>
+<p>tags: <a href="./tag/openbsd.html">openbsd</a> <a href="./tag/pelican.html">pelican</a> <a href="./tag/python.html">python</a> <a href="./tag/coding.html">coding</a> </p>
+</footer><!-- /.post-info -->      <div class="sect1">
+<h2 id="_required_packages">Required packages</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>pkg_add py-virtualenv python-<span style="color: #993399">2.7</span> asciidoc</tt></pre></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_final_tree">Final tree</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt> repositories<span style="color: #990000">/</span>
+   Makefile
+   pelicanconf<span style="color: #990000">.</span>py
+   pelicanconf_dev<span style="color: #990000">.</span>py
+   template<span style="color: #990000">/</span>
+     page<span style="color: #990000">.</span>asciidoc
+     article<span style="color: #990000">.</span>asciidoc
+   niamtokik<span style="color: #990000">.</span>github<span style="color: #990000">.</span>io<span style="color: #990000">/</span>
+   website<span style="color: #990000">/</span>
+     content<span style="color: #990000">/</span>
+       category<span style="color: #990000">/</span>
+         <span style="color: #990000">*.</span>asciidoc
+       pages<span style="color: #990000">/</span>
+         <span style="color: #990000">*.</span>asciidoc
+       <span style="color: #990000">*.</span>asciidoc
+   ---- virtualenv ----
+   bin<span style="color: #990000">/</span>
+   include<span style="color: #990000">/</span>
+   lib<span style="color: #990000">/</span></tt></pre></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_initialize_repository_and_virtualenv">Initialize repository and virtualenv</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>mkdir repositories
+cd repositories
+git clone https<span style="color: #990000">:</span>//github<span style="color: #990000">.</span>com/niamtokik/niamtokik<span style="color: #990000">.</span>github<span style="color: #990000">.</span>io
+virtualenv <span style="color: #990000">.</span>
+<span style="color: #990000">.</span>/bin/pip install pelican</tt></pre></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configure_pelican">Configure pelican</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>cd repositories
+cat <span style="color: #990000">&gt;&gt;</span> pelicanconf<span style="color: #990000">.</span>py <span style="color: #990000">&lt;&lt;</span> __EOF__
+<span style="color: #009900">PATH</span><span style="color: #990000">=</span><span style="color: #FF0000">"website"</span>
+<span style="color: #009900">PLUGIN_PATH</span><span style="color: #990000">=[</span><span style="color: #FF0000">"./pelican-plugins"</span><span style="color: #990000">]</span>
+<span style="color: #009900">PLUGINS</span><span style="color: #990000">=[</span><span style="color: #FF0000">"asciidoc_reader"</span><span style="color: #990000">]</span>
+<span style="color: #009900">AUTHOR</span><span style="color: #990000">=</span><span style="color: #FF0000">"Me"</span>
+__EOF__
+
+cat <span style="color: #990000">&gt;&gt;</span> pelicanf_dev<span style="color: #990000">.</span>py <span style="color: #990000">&lt;&lt;</span> __EOF__
+SITESUBTITLE <span style="color: #990000">=</span> <span style="color: #FF0000">"my title"</span>
+PATH <span style="color: #990000">=</span> <span style="color: #FF0000">"website"</span>
+PLUGIN_PATH <span style="color: #990000">=</span> <span style="color: #990000">[</span><span style="color: #FF0000">"./pelican-plugins"</span><span style="color: #990000">]</span>
+PLUGINS <span style="color: #990000">=</span> <span style="color: #990000">[</span><span style="color: #FF0000">"asciidoc_reader"</span><span style="color: #990000">]</span>
+AUTHOR <span style="color: #990000">=</span> <span style="color: #FF0000">"Me"</span>
+RELATIVE_URLS <span style="color: #990000">=</span> True
+__EOF__</tt></pre></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_get_asciidoc_reader_module">Get asciidoc_reader module</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>cd repositories
+git clone https<span style="color: #990000">:</span>//github<span style="color: #990000">.</span>com/getpelican/pelican-plugins<span style="color: #990000">.</span>git</tt></pre></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_initialize_website_tree">Initialize website tree</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>cd repositories/niamtokik<span style="color: #990000">.</span>github<span style="color: #990000">.</span>io
+mkdir website<span style="color: #990000">/</span>
+mkdir website/content<span style="color: #990000">/</span>
+mkdir website/content/category
+mkdir website/content/pages</tt></pre></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_makefile_creation">Makefile creation</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>REPOSITORY ?= niamtokik.github.io
+WEBSITE ?= website
+
+.ifndef EDITOR
+EDITOR := mg
+.endif
+
+prod:
+        ./bin/pelican
+
+dev:
+        ./bin/pelican -s peliconf_dev.py
+
+article:
+        touch $(WEBSITE)/$(TITLE).asciidoc
+
+.ifndef TITLE
+TITLE != date +"%Y-%m-%dT%H:%M:%S"
+.endif
+
+article:
+        touch $(WEBSITE)/$(TITLE).asciidoc
+        $(EDITOR) $(WEBSITE)/$(TITLE).asciidoc
+
+page:
+        touch $(WEBSITE)/pages/$(TITLE).asciidoc
+        $(EDITOR) $(WEBSITE)/pages/$(TITLE).asciidoc
+
+bootstrap:
+        virtualenv .
+        ./bin/pip install pelican
+
+deploy: prod
+        cd $(REPOSITORY)
+        git push</tt></pre></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_making_templates">Making templates</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>cd repositories
+mkdir template</tt></pre></div></div>
+</div>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

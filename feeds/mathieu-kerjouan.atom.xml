@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>A Pelican Blog - Mathieu Kerjouan</title><link href="/" rel="alternate"></link><link href="/feeds/mathieu-kerjouan.atom.xml" rel="self"></link><id>/</id><updated>2017-02-23T00:00:00+00:00</updated><entry><title>Using Pelican on OpenBSD-current with Asciidoc and github.io</title><link href="/openbsd-pelican-asciidoc.html" rel="alternate"></link><published>2017-02-23T00:00:00+00:00</published><updated>2017-02-23T00:00:00+00:00</updated><author><name>Mathieu Kerjouan</name></author><id>tag:None,2017-02-23:/openbsd-pelican-asciidoc.html</id><summary type="html">&lt;div class="sect1"&gt;
+&lt;h2 id="_required_packages"&gt;Required packages&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite --&gt;
+&lt;pre&gt;&lt;tt&gt;pkg_add py-virtualenv python-&lt;span style="color: #993399"&gt;2.7&lt;/span&gt; asciidoc&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_final_tree"&gt;Final tree&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite --&gt;
+&lt;pre&gt;&lt;tt&gt; repositories&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+   Makefile
+   pelicanconf&lt;span style="color: #990000"&gt;.&lt;/span&gt;py
+   pelicanconf_dev&lt;span style="color: #990000"&gt;.&lt;/span&gt;py
+   template&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+     page&lt;span style="color: #990000"&gt;.&lt;/span&gt;asciidoc
+     article&lt;span style="color: #990000"&gt;.&lt;/span&gt;asciidoc
+   niamtokik&lt;span style="color: #990000"&gt;.&lt;/span&gt;github&lt;span style="color: #990000"&gt;.&lt;/span&gt;io&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+   website&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+     content&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+       category&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+         &lt;span style="color: #990000"&gt;*.&lt;/span&gt;asciidoc
+       pages&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+         &lt;span style="color: #990000"&gt;*.&lt;/span&gt;asciidoc
+       &lt;span style="color: #990000"&gt;*.&lt;/span&gt;asciidoc
+   ---- virtualenv ----
+   bin&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+   include&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+   lib&lt;span style="color: #990000"&gt;/&lt;/span&gt;&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_initialize_repository_and_virtualenv"&gt;Initialize repository and virtualenv&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite --&gt;
+&lt;pre&gt;&lt;tt&gt;mkdir repositories
+cd repositories
+git clone https&lt;span style="color: #990000"&gt;:&lt;/span&gt;//github&lt;span style="color: #990000"&gt;.&lt;/span&gt;com/niamtokik/niamtokik …&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="sect1"&gt;
+&lt;h2 id="_required_packages"&gt;Required packages&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite --&gt;
+&lt;pre&gt;&lt;tt&gt;pkg_add py-virtualenv python-&lt;span style="color: #993399"&gt;2.7&lt;/span&gt; asciidoc&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_final_tree"&gt;Final tree&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite --&gt;
+&lt;pre&gt;&lt;tt&gt; repositories&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+   Makefile
+   pelicanconf&lt;span style="color: #990000"&gt;.&lt;/span&gt;py
+   pelicanconf_dev&lt;span style="color: #990000"&gt;.&lt;/span&gt;py
+   template&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+     page&lt;span style="color: #990000"&gt;.&lt;/span&gt;asciidoc
+     article&lt;span style="color: #990000"&gt;.&lt;/span&gt;asciidoc
+   niamtokik&lt;span style="color: #990000"&gt;.&lt;/span&gt;github&lt;span style="color: #990000"&gt;.&lt;/span&gt;io&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+   website&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+     content&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+       category&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+         &lt;span style="color: #990000"&gt;*.&lt;/span&gt;asciidoc
+       pages&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+         &lt;span style="color: #990000"&gt;*.&lt;/span&gt;asciidoc
+       &lt;span style="color: #990000"&gt;*.&lt;/span&gt;asciidoc
+   ---- virtualenv ----
+   bin&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+   include&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+   lib&lt;span style="color: #990000"&gt;/&lt;/span&gt;&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_initialize_repository_and_virtualenv"&gt;Initialize repository and virtualenv&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite --&gt;
+&lt;pre&gt;&lt;tt&gt;mkdir repositories
+cd repositories
+git clone https&lt;span style="color: #990000"&gt;:&lt;/span&gt;//github&lt;span style="color: #990000"&gt;.&lt;/span&gt;com/niamtokik/niamtokik&lt;span style="color: #990000"&gt;.&lt;/span&gt;github&lt;span style="color: #990000"&gt;.&lt;/span&gt;io
+virtualenv &lt;span style="color: #990000"&gt;.&lt;/span&gt;
+&lt;span style="color: #990000"&gt;.&lt;/span&gt;/bin/pip install pelican&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_configure_pelican"&gt;Configure pelican&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite --&gt;
+&lt;pre&gt;&lt;tt&gt;cd repositories
+cat &lt;span style="color: #990000"&gt;&amp;gt;&amp;gt;&lt;/span&gt; pelicanconf&lt;span style="color: #990000"&gt;.&lt;/span&gt;py &lt;span style="color: #990000"&gt;&amp;lt;&amp;lt;&lt;/span&gt; __EOF__
+&lt;span style="color: #009900"&gt;PATH&lt;/span&gt;&lt;span style="color: #990000"&gt;=&lt;/span&gt;&lt;span style="color: #FF0000"&gt;"website"&lt;/span&gt;
+&lt;span style="color: #009900"&gt;PLUGIN_PATH&lt;/span&gt;&lt;span style="color: #990000"&gt;=[&lt;/span&gt;&lt;span style="color: #FF0000"&gt;"./pelican-plugins"&lt;/span&gt;&lt;span style="color: #990000"&gt;]&lt;/span&gt;
+&lt;span style="color: #009900"&gt;PLUGINS&lt;/span&gt;&lt;span style="color: #990000"&gt;=[&lt;/span&gt;&lt;span style="color: #FF0000"&gt;"asciidoc_reader"&lt;/span&gt;&lt;span style="color: #990000"&gt;]&lt;/span&gt;
+&lt;span style="color: #009900"&gt;AUTHOR&lt;/span&gt;&lt;span style="color: #990000"&gt;=&lt;/span&gt;&lt;span style="color: #FF0000"&gt;"Me"&lt;/span&gt;
+__EOF__
+
+cat &lt;span style="color: #990000"&gt;&amp;gt;&amp;gt;&lt;/span&gt; pelicanf_dev&lt;span style="color: #990000"&gt;.&lt;/span&gt;py &lt;span style="color: #990000"&gt;&amp;lt;&amp;lt;&lt;/span&gt; __EOF__
+SITESUBTITLE &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #FF0000"&gt;"my title"&lt;/span&gt;
+PATH &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #FF0000"&gt;"website"&lt;/span&gt;
+PLUGIN_PATH &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #990000"&gt;[&lt;/span&gt;&lt;span style="color: #FF0000"&gt;"./pelican-plugins"&lt;/span&gt;&lt;span style="color: #990000"&gt;]&lt;/span&gt;
+PLUGINS &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #990000"&gt;[&lt;/span&gt;&lt;span style="color: #FF0000"&gt;"asciidoc_reader"&lt;/span&gt;&lt;span style="color: #990000"&gt;]&lt;/span&gt;
+AUTHOR &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #FF0000"&gt;"Me"&lt;/span&gt;
+RELATIVE_URLS &lt;span style="color: #990000"&gt;=&lt;/span&gt; True
+__EOF__&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_get_asciidoc_reader_module"&gt;Get asciidoc_reader module&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite --&gt;
+&lt;pre&gt;&lt;tt&gt;cd repositories
+git clone https&lt;span style="color: #990000"&gt;:&lt;/span&gt;//github&lt;span style="color: #990000"&gt;.&lt;/span&gt;com/getpelican/pelican-plugins&lt;span style="color: #990000"&gt;.&lt;/span&gt;git&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_initialize_website_tree"&gt;Initialize website tree&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite --&gt;
+&lt;pre&gt;&lt;tt&gt;cd repositories/niamtokik&lt;span style="color: #990000"&gt;.&lt;/span&gt;github&lt;span style="color: #990000"&gt;.&lt;/span&gt;io
+mkdir website&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+mkdir website/content&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+mkdir website/content/category
+mkdir website/content/pages&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_makefile_creation"&gt;Makefile creation&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite --&gt;
+&lt;pre&gt;&lt;tt&gt;REPOSITORY ?= niamtokik.github.io
+WEBSITE ?= website
+
+.ifndef EDITOR
+EDITOR := mg
+.endif
+
+prod:
+        ./bin/pelican
+
+dev:
+        ./bin/pelican -s peliconf_dev.py
+
+article:
+        touch $(WEBSITE)/$(TITLE).asciidoc
+
+.ifndef TITLE
+TITLE != date +"%Y-%m-%dT%H:%M:%S"
+.endif
+
+article:
+        touch $(WEBSITE)/$(TITLE).asciidoc
+        $(EDITOR) $(WEBSITE)/$(TITLE).asciidoc
+
+page:
+        touch $(WEBSITE)/pages/$(TITLE).asciidoc
+        $(EDITOR) $(WEBSITE)/pages/$(TITLE).asciidoc
+
+bootstrap:
+        virtualenv .
+        ./bin/pip install pelican
+
+deploy: prod
+        cd $(REPOSITORY)
+        git push&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_making_templates"&gt;Making templates&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite --&gt;
+&lt;pre&gt;&lt;tt&gt;cd repositories
+mkdir template&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="openbsd"></category><category term="pelican"></category><category term="python"></category><category term="coding"></category></entry></feed>
