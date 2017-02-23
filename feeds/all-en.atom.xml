@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>A Pelican Blog</title><link href="https://niamtokik.github.io/" rel="alternate"></link><link href="https://niamtokik.github.io/feeds/all-en.atom.xml" rel="self"></link><id>https://niamtokik.github.io/</id><updated>2017-02-23T00:00:00+00:00</updated><entry><title>Using Pelican on OpenBSD-current with Asciidoc and github.io</title><link href="https://niamtokik.github.io/openbsd-pelican-asciidoc.html" rel="alternate"></link><published>2017-02-23T00:00:00+00:00</published><updated>2017-02-23T00:00:00+00:00</updated><author><name>Mathieu Kerjouan</name></author><id>tag:niamtokik.github.io,2017-02-23:/openbsd-pelican-asciidoc.html</id><summary type="html">&lt;div class="sect1"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>-- Explicit Programming</title><link href="https://niamtokik.github.io/" rel="alternate"></link><link href="https://niamtokik.github.io/feeds/all-en.atom.xml" rel="self"></link><id>https://niamtokik.github.io/</id><updated>2017-02-23T00:00:00+00:00</updated><entry><title>Using Pelican on OpenBSD-current with Asciidoc and github.io</title><link href="https://niamtokik.github.io/openbsd-pelican-asciidoc.html" rel="alternate"></link><published>2017-02-23T00:00:00+00:00</published><updated>2017-02-23T00:00:00+00:00</updated><author><name>Mathieu Kerjouan</name></author><id>tag:niamtokik.github.io,2017-02-23:/openbsd-pelican-asciidoc.html</id><summary type="html">&lt;div class="sect1"&gt;
 &lt;h2 id="_required_packages"&gt;Required packages&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.6
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite --&gt;
@@ -14,7 +14,7 @@ http://www.gnu.org/software/src-highlite --&gt;
 &lt;h2 id="_final_tree"&gt;Final tree&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.6
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite --&gt;
@@ -43,7 +43,7 @@ http://www.gnu.org/software/src-highlite --&gt;
 &lt;h2 id="_initialize_repository_and_virtualenv"&gt;Initialize repository and virtualenv&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.6
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite --&gt;
@@ -53,7 +53,7 @@ git clone https&lt;span style="color: #990000"&gt;:&lt;/span&gt;//github&lt;span
 &lt;h2 id="_required_packages"&gt;Required packages&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.6
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite --&gt;
@@ -64,7 +64,7 @@ http://www.gnu.org/software/src-highlite --&gt;
 &lt;h2 id="_final_tree"&gt;Final tree&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.6
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite --&gt;
@@ -93,7 +93,7 @@ http://www.gnu.org/software/src-highlite --&gt;
 &lt;h2 id="_initialize_repository_and_virtualenv"&gt;Initialize repository and virtualenv&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.6
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite --&gt;
@@ -109,7 +109,7 @@ virtualenv &lt;span style="color: #990000"&gt;.&lt;/span&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="title"&gt;Pelican default configuration file (prod)&lt;/div&gt;
-&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.6
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite --&gt;
@@ -122,7 +122,7 @@ cat &lt;span style="color: #990000"&gt;&amp;gt;&amp;gt;&lt;/span&gt; pelicanconf
 __EOF__&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="title"&gt;Pelican test configuration file (dev)&lt;/div&gt;
-&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.6
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite --&gt;
@@ -140,7 +140,7 @@ __EOF__&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;h2 id="_get_asciidoc_reader_module"&gt;Get asciidoc_reader module&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.6
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite --&gt;
@@ -152,7 +152,7 @@ git clone https&lt;span style="color: #990000"&gt;:&lt;/span&gt;//github&lt;span
 &lt;h2 id="_initialize_website_tree"&gt;Initialize website tree&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.6
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite --&gt;
@@ -167,7 +167,7 @@ mkdir website/content/pages&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;h2 id="_makefile_creation"&gt;Makefile creation&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.6
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite --&gt;
@@ -212,7 +212,7 @@ TITLE &lt;span style="color: #990000"&gt;!=&lt;/span&gt; date &lt;span style="co
 &lt;h2 id="_making_templates"&gt;Making templates&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.6
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite --&gt;

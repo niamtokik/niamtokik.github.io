@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>A Pelican Blog - Mathieu Kerjouan</title><link>https://niamtokik.github.io/</link><description></description><lastBuildDate>Thu, 23 Feb 2017 00:00:00 +0000</lastBuildDate><item><title>Using Pelican on OpenBSD-current with Asciidoc and github.io</title><link>https://niamtokik.github.io/openbsd-pelican-asciidoc.html</link><description>&lt;div class="sect1"&gt;
+<rss version="2.0"><channel><title>-- Explicit Programming - Mathieu Kerjouan</title><link>https://niamtokik.github.io/</link><description>Questions, Answers and Reflexions.</description><lastBuildDate>Thu, 23 Feb 2017 00:00:00 +0000</lastBuildDate><item><title>Using Pelican on OpenBSD-current with Asciidoc and github.io</title><link>https://niamtokik.github.io/openbsd-pelican-asciidoc.html</link><description>&lt;div class="sect1"&gt;
 &lt;h2 id="_required_packages"&gt;Required packages&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.6
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite --&gt;
@@ -14,7 +14,7 @@ http://www.gnu.org/software/src-highlite --&gt;
 &lt;h2 id="_final_tree"&gt;Final tree&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.6
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite --&gt;
@@ -43,7 +43,7 @@ http://www.gnu.org/software/src-highlite --&gt;
 &lt;h2 id="_initialize_repository_and_virtualenv"&gt;Initialize repository and virtualenv&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.6
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite --&gt;
