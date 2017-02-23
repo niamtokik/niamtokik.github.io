@@ -3,8 +3,8 @@
 <head>
         <meta charset="utf-8" />
         <title>A Pelican Blog</title>
-        <link rel="stylesheet" href="./theme/css/main.css" />
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="A Pelican Blog Atom Feed" />
+        <link rel="stylesheet" href="https://niamtokik.github.io/theme/css/main.css" />
+        <link href="https://niamtokik.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="A Pelican Blog Atom Feed" />
 
         <!--[if IE]>
             <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -13,15 +13,15 @@
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="./">A Pelican Blog  <strong>test</strong></a></h1>
+                <h1><a href="https://niamtokik.github.io/">A Pelican Blog </a></h1>
                 <nav><ul>
-                    <li><a href="./category/coding.html">coding</a></li>
+                    <li><a href="https://niamtokik.github.io/category/coding.html">coding</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="./openbsd-pelican-asciidoc.html">Using Pelican on OpenBSD-current with Asciidoc and github.io</a></h1>
+                    <h1 class="entry-title"><a href="https://niamtokik.github.io/openbsd-pelican-asciidoc.html">Using Pelican on OpenBSD-current with Asciidoc and github.io</a></h1>
 <footer class="post-info">
         <abbr class="published" title="2017-02-23T00:00:00+00:00">
                 Published: Thu 23 February 2017
@@ -32,10 +32,10 @@
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="./author/mathieu-kerjouan.html">Mathieu Kerjouan</a>
+                By                         <a class="url fn" href="https://niamtokik.github.io/author/mathieu-kerjouan.html">Mathieu Kerjouan</a>
         </address>
-<p>In <a href="./category/coding.html">coding</a>.</p>
-<p>tags: <a href="./tag/openbsd.html">openbsd</a> <a href="./tag/pelican.html">pelican</a> <a href="./tag/python.html">python</a> <a href="./tag/coding.html">coding</a> </p>
+<p>In <a href="https://niamtokik.github.io/category/coding.html">coding</a>.</p>
+<p>tags: <a href="https://niamtokik.github.io/tag/openbsd.html">openbsd</a> <a href="https://niamtokik.github.io/tag/pelican.html">pelican</a> <a href="https://niamtokik.github.io/tag/python.html">python</a> <a href="https://niamtokik.github.io/tag/coding.html">coding</a> </p>
 </footer><!-- /.post-info --><div class="sect1">
 <h2 id="_required_packages">Required packages</h2>
 <div class="sectionbody">
@@ -95,6 +95,7 @@ virtualenv <span style="color: #990000">.</span>
 <h2 id="_configure_pelican">Configure pelican</h2>
 <div class="sectionbody">
 <div class="listingblock">
+<div class="title">Pelican default configuration file (prod)</div>
 <div class="content"><!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
@@ -105,9 +106,14 @@ cat <span style="color: #990000">&gt;&gt;</span> pelicanconf<span style="color: 
 <span style="color: #009900">PLUGIN_PATH</span><span style="color: #990000">=[</span><span style="color: #FF0000">"./pelican-plugins"</span><span style="color: #990000">]</span>
 <span style="color: #009900">PLUGINS</span><span style="color: #990000">=[</span><span style="color: #FF0000">"asciidoc_reader"</span><span style="color: #990000">]</span>
 <span style="color: #009900">AUTHOR</span><span style="color: #990000">=</span><span style="color: #FF0000">"Me"</span>
-__EOF__
-
-cat <span style="color: #990000">&gt;&gt;</span> pelicanf_dev<span style="color: #990000">.</span>py <span style="color: #990000">&lt;&lt;</span> __EOF__
+__EOF__</tt></pre></div></div>
+<div class="listingblock">
+<div class="title">Pelican test configuration file (dev)</div>
+<div class="content"><!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>cat <span style="color: #990000">&gt;&gt;</span> pelicanf_dev<span style="color: #990000">.</span>py <span style="color: #990000">&lt;&lt;</span> __EOF__
 SITESUBTITLE <span style="color: #990000">=</span> <span style="color: #FF0000">"my title"</span>
 PATH <span style="color: #990000">=</span> <span style="color: #FF0000">"website"</span>
 PLUGIN_PATH <span style="color: #990000">=</span> <span style="color: #990000">[</span><span style="color: #FF0000">"./pelican-plugins"</span><span style="color: #990000">]</span>
@@ -152,40 +158,40 @@ mkdir website/content/pages</tt></pre></div></div>
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt>REPOSITORY ?= niamtokik.github.io
-WEBSITE ?= website
+<pre><tt>REPOSITORY <span style="color: #990000">?=</span> niamtokik.github.io
+WEBSITE <span style="color: #990000">?=</span> website
 
 .ifndef EDITOR
-EDITOR := mg
+<span style="color: #990000">EDITOR :=</span> mg
 .endif
 
-prod:
-        ./bin/pelican
+<span style="color: #990000">prod:</span>
+        <span style="color: #990000">.</span>/bin/pelican
 
-dev:
-        ./bin/pelican -s peliconf_dev.py
+<span style="color: #990000">dev:</span>
+        <span style="color: #990000">.</span>/bin/pelican -s peliconf_dev.py
 
-article:
-        touch $(WEBSITE)/$(TITLE).asciidoc
+<span style="color: #990000">article:</span>
+        touch <span style="color: #009900">$(WEBSITE)/$(TITLE)</span>.asciidoc
 
 .ifndef TITLE
-TITLE != date +"%Y-%m-%dT%H:%M:%S"
+TITLE <span style="color: #990000">!=</span> date <span style="color: #990000">+</span><span style="color: #FF0000">"%Y-%m-%dT%H:%M:%S"</span>
 .endif
 
-article:
-        touch $(WEBSITE)/$(TITLE).asciidoc
-        $(EDITOR) $(WEBSITE)/$(TITLE).asciidoc
+<span style="color: #990000">article:</span>
+        touch <span style="color: #009900">$(WEBSITE)/$(TITLE)</span>.asciidoc
+        <span style="color: #009900">$(EDITOR)</span> <span style="color: #009900">$(WEBSITE)/$(TITLE)</span>.asciidoc
 
-page:
-        touch $(WEBSITE)/pages/$(TITLE).asciidoc
-        $(EDITOR) $(WEBSITE)/pages/$(TITLE).asciidoc
+<span style="color: #990000">page:</span>
+        touch <span style="color: #009900">$(WEBSITE)/pages/$(TITLE)</span>.asciidoc
+        <span style="color: #009900">$(EDITOR)</span> <span style="color: #009900">$(WEBSITE)/pages/$(TITLE)</span>.asciidoc
 
-bootstrap:
-        virtualenv .
-        ./bin/pip install pelican
+<span style="color: #990000">bootstrap:</span>
+        virtualenv <span style="color: #990000">.</span>
+        <span style="color: #990000">.</span>/bin/pip install pelican
 
-deploy: prod
-        cd $(REPOSITORY)
+<span style="color: #990000">deploy:</span> prod
+        cd <span style="color: #009900">$(REPOSITORY)</span>
         git push</tt></pre></div></div>
 </div>
 </div>
@@ -207,7 +213,7 @@ mkdir template</tt></pre></div></div>
                 <div class="social">
                         <h2>social</h2>
                         <ul>
-                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            <li><a href="https://niamtokik.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
 
                         </ul>
                 </div><!-- /.social -->

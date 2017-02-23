@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>A Pelican Blog</title><link href="/" rel="alternate"></link><link href="/feeds/all-en.atom.xml" rel="self"></link><id>/</id><updated>2017-02-23T00:00:00+00:00</updated><entry><title>Using Pelican on OpenBSD-current with Asciidoc and github.io</title><link href="/openbsd-pelican-asciidoc.html" rel="alternate"></link><published>2017-02-23T00:00:00+00:00</published><updated>2017-02-23T00:00:00+00:00</updated><author><name>Mathieu Kerjouan</name></author><id>tag:None,2017-02-23:/openbsd-pelican-asciidoc.html</id><summary type="html">&lt;div class="sect1"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>A Pelican Blog</title><link href="https://niamtokik.github.io/" rel="alternate"></link><link href="https://niamtokik.github.io/feeds/all-en.atom.xml" rel="self"></link><id>https://niamtokik.github.io/</id><updated>2017-02-23T00:00:00+00:00</updated><entry><title>Using Pelican on OpenBSD-current with Asciidoc and github.io</title><link href="https://niamtokik.github.io/openbsd-pelican-asciidoc.html" rel="alternate"></link><published>2017-02-23T00:00:00+00:00</published><updated>2017-02-23T00:00:00+00:00</updated><author><name>Mathieu Kerjouan</name></author><id>tag:niamtokik.github.io,2017-02-23:/openbsd-pelican-asciidoc.html</id><summary type="html">&lt;div class="sect1"&gt;
 &lt;h2 id="_required_packages"&gt;Required packages&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="listingblock"&gt;
@@ -108,6 +108,7 @@ virtualenv &lt;span style="color: #990000"&gt;.&lt;/span&gt;
 &lt;h2 id="_configure_pelican"&gt;Configure pelican&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="listingblock"&gt;
+&lt;div class="title"&gt;Pelican default configuration file (prod)&lt;/div&gt;
 &lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
 by Lorenzo Bettini
 http://www.lorenzobettini.it
@@ -118,9 +119,14 @@ cat &lt;span style="color: #990000"&gt;&amp;gt;&amp;gt;&lt;/span&gt; pelicanconf
 &lt;span style="color: #009900"&gt;PLUGIN_PATH&lt;/span&gt;&lt;span style="color: #990000"&gt;=[&lt;/span&gt;&lt;span style="color: #FF0000"&gt;"./pelican-plugins"&lt;/span&gt;&lt;span style="color: #990000"&gt;]&lt;/span&gt;
 &lt;span style="color: #009900"&gt;PLUGINS&lt;/span&gt;&lt;span style="color: #990000"&gt;=[&lt;/span&gt;&lt;span style="color: #FF0000"&gt;"asciidoc_reader"&lt;/span&gt;&lt;span style="color: #990000"&gt;]&lt;/span&gt;
 &lt;span style="color: #009900"&gt;AUTHOR&lt;/span&gt;&lt;span style="color: #990000"&gt;=&lt;/span&gt;&lt;span style="color: #FF0000"&gt;"Me"&lt;/span&gt;
-__EOF__
-
-cat &lt;span style="color: #990000"&gt;&amp;gt;&amp;gt;&lt;/span&gt; pelicanf_dev&lt;span style="color: #990000"&gt;.&lt;/span&gt;py &lt;span style="color: #990000"&gt;&amp;lt;&amp;lt;&lt;/span&gt; __EOF__
+__EOF__&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="title"&gt;Pelican test configuration file (dev)&lt;/div&gt;
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.8
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite --&gt;
+&lt;pre&gt;&lt;tt&gt;cat &lt;span style="color: #990000"&gt;&amp;gt;&amp;gt;&lt;/span&gt; pelicanf_dev&lt;span style="color: #990000"&gt;.&lt;/span&gt;py &lt;span style="color: #990000"&gt;&amp;lt;&amp;lt;&lt;/span&gt; __EOF__
 SITESUBTITLE &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #FF0000"&gt;"my title"&lt;/span&gt;
 PATH &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #FF0000"&gt;"website"&lt;/span&gt;
 PLUGIN_PATH &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #990000"&gt;[&lt;/span&gt;&lt;span style="color: #FF0000"&gt;"./pelican-plugins"&lt;/span&gt;&lt;span style="color: #990000"&gt;]&lt;/span&gt;
@@ -165,40 +171,40 @@ mkdir website/content/pages&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite --&gt;
-&lt;pre&gt;&lt;tt&gt;REPOSITORY ?= niamtokik.github.io
-WEBSITE ?= website
+&lt;pre&gt;&lt;tt&gt;REPOSITORY &lt;span style="color: #990000"&gt;?=&lt;/span&gt; niamtokik.github.io
+WEBSITE &lt;span style="color: #990000"&gt;?=&lt;/span&gt; website
 
 .ifndef EDITOR
-EDITOR := mg
+&lt;span style="color: #990000"&gt;EDITOR :=&lt;/span&gt; mg
 .endif
 
-prod:
-        ./bin/pelican
+&lt;span style="color: #990000"&gt;prod:&lt;/span&gt;
+        &lt;span style="color: #990000"&gt;.&lt;/span&gt;/bin/pelican
 
-dev:
-        ./bin/pelican -s peliconf_dev.py
+&lt;span style="color: #990000"&gt;dev:&lt;/span&gt;
+        &lt;span style="color: #990000"&gt;.&lt;/span&gt;/bin/pelican -s peliconf_dev.py
 
-article:
-        touch $(WEBSITE)/$(TITLE).asciidoc
+&lt;span style="color: #990000"&gt;article:&lt;/span&gt;
+        touch &lt;span style="color: #009900"&gt;$(WEBSITE)/$(TITLE)&lt;/span&gt;.asciidoc
 
 .ifndef TITLE
-TITLE != date +"%Y-%m-%dT%H:%M:%S"
+TITLE &lt;span style="color: #990000"&gt;!=&lt;/span&gt; date &lt;span style="color: #990000"&gt;+&lt;/span&gt;&lt;span style="color: #FF0000"&gt;"%Y-%m-%dT%H:%M:%S"&lt;/span&gt;
 .endif
 
-article:
-        touch $(WEBSITE)/$(TITLE).asciidoc
-        $(EDITOR) $(WEBSITE)/$(TITLE).asciidoc
+&lt;span style="color: #990000"&gt;article:&lt;/span&gt;
+        touch &lt;span style="color: #009900"&gt;$(WEBSITE)/$(TITLE)&lt;/span&gt;.asciidoc
+        &lt;span style="color: #009900"&gt;$(EDITOR)&lt;/span&gt; &lt;span style="color: #009900"&gt;$(WEBSITE)/$(TITLE)&lt;/span&gt;.asciidoc
 
-page:
-        touch $(WEBSITE)/pages/$(TITLE).asciidoc
-        $(EDITOR) $(WEBSITE)/pages/$(TITLE).asciidoc
+&lt;span style="color: #990000"&gt;page:&lt;/span&gt;
+        touch &lt;span style="color: #009900"&gt;$(WEBSITE)/pages/$(TITLE)&lt;/span&gt;.asciidoc
+        &lt;span style="color: #009900"&gt;$(EDITOR)&lt;/span&gt; &lt;span style="color: #009900"&gt;$(WEBSITE)/pages/$(TITLE)&lt;/span&gt;.asciidoc
 
-bootstrap:
-        virtualenv .
-        ./bin/pip install pelican
+&lt;span style="color: #990000"&gt;bootstrap:&lt;/span&gt;
+        virtualenv &lt;span style="color: #990000"&gt;.&lt;/span&gt;
+        &lt;span style="color: #990000"&gt;.&lt;/span&gt;/bin/pip install pelican
 
-deploy: prod
-        cd $(REPOSITORY)
+&lt;span style="color: #990000"&gt;deploy:&lt;/span&gt; prod
+        cd &lt;span style="color: #009900"&gt;$(REPOSITORY)&lt;/span&gt;
         git push&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
