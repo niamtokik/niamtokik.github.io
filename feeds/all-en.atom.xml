@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>-- Explicit Programming</title><link href="https://niamtokik.github.io/" rel="alternate"></link><link href="https://niamtokik.github.io/feeds/all-en.atom.xml" rel="self"></link><id>https://niamtokik.github.io/</id><updated>2017-02-23T00:00:00+00:00</updated><entry><title>Using Pelican on OpenBSD-current with Asciidoc and github.io</title><link href="https://niamtokik.github.io/openbsd-pelican-asciidoc.html" rel="alternate"></link><published>2017-02-23T00:00:00+00:00</published><updated>2017-02-23T00:00:00+00:00</updated><author><name>Mathieu Kerjouan</name></author><id>tag:niamtokik.github.io,2017-02-23:/openbsd-pelican-asciidoc.html</id><summary type="html">&lt;div class="sect1"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>-- Explicit Programming</title><link href="https://niamtokik.github.io/" rel="alternate"></link><link href="https://niamtokik.github.io/feeds/all-en.atom.xml" rel="self"></link><id>https://niamtokik.github.io/</id><updated>2017-02-23T15:10:00+00:00</updated><entry><title>Using Pelican on OpenBSD-current with Asciidoc and github.io</title><link href="https://niamtokik.github.io/openbsd-pelican-asciidoc.html" rel="alternate"></link><published>2017-02-23T10:00:00+00:00</published><updated>2017-02-23T15:10:00+00:00</updated><author><name>Mathieu Kerjouan</name></author><id>tag:niamtokik.github.io,2017-02-23:/openbsd-pelican-asciidoc.html</id><summary type="html">&lt;div class="sect1"&gt;
 &lt;h2 id="_required_packages"&gt;Required packages&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="listingblock"&gt;
@@ -22,6 +22,8 @@ http://www.gnu.org/software/src-highlite --&gt;
    Makefile
    pelicanconf&lt;span style="color: #990000"&gt;.&lt;/span&gt;py
    pelicanconf_dev&lt;span style="color: #990000"&gt;.&lt;/span&gt;py
+   pelican-plugins&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+   pelican-themes&lt;span style="color: #990000"&gt;/&lt;/span&gt;
    template&lt;span style="color: #990000"&gt;/&lt;/span&gt;
      page&lt;span style="color: #990000"&gt;.&lt;/span&gt;asciidoc
      article&lt;span style="color: #990000"&gt;.&lt;/span&gt;asciidoc
@@ -49,7 +51,7 @@ http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite --&gt;
 &lt;pre&gt;&lt;tt&gt;mkdir repositories
 cd repositories
-git clone https&lt;span style="color: #990000"&gt;:&lt;/span&gt;//github&lt;span style="color: #990000"&gt;.&lt;/span&gt;com/niamtokik/niamtokik …&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="sect1"&gt;
+git clone https&lt;span style="color: #990000"&gt;:&lt;/span&gt;//github&lt;span style="color: #990000"&gt;.&lt;/span&gt;com …&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="sect1"&gt;
 &lt;h2 id="_required_packages"&gt;Required packages&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="listingblock"&gt;
@@ -72,6 +74,8 @@ http://www.gnu.org/software/src-highlite --&gt;
    Makefile
    pelicanconf&lt;span style="color: #990000"&gt;.&lt;/span&gt;py
    pelicanconf_dev&lt;span style="color: #990000"&gt;.&lt;/span&gt;py
+   pelican-plugins&lt;span style="color: #990000"&gt;/&lt;/span&gt;
+   pelican-themes&lt;span style="color: #990000"&gt;/&lt;/span&gt;
    template&lt;span style="color: #990000"&gt;/&lt;/span&gt;
      page&lt;span style="color: #990000"&gt;.&lt;/span&gt;asciidoc
      article&lt;span style="color: #990000"&gt;.&lt;/span&gt;asciidoc
@@ -115,11 +119,27 @@ http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite --&gt;
 &lt;pre&gt;&lt;tt&gt;cd repositories
 cat &lt;span style="color: #990000"&gt;&amp;gt;&amp;gt;&lt;/span&gt; pelicanconf&lt;span style="color: #990000"&gt;.&lt;/span&gt;py &lt;span style="color: #990000"&gt;&amp;lt;&amp;lt;&lt;/span&gt; __EOF__
-&lt;span style="color: #009900"&gt;PATH&lt;/span&gt;&lt;span style="color: #990000"&gt;=&lt;/span&gt;&lt;span style="color: #FF0000"&gt;"website"&lt;/span&gt;
-&lt;span style="color: #009900"&gt;PLUGIN_PATH&lt;/span&gt;&lt;span style="color: #990000"&gt;=[&lt;/span&gt;&lt;span style="color: #FF0000"&gt;"./pelican-plugins"&lt;/span&gt;&lt;span style="color: #990000"&gt;]&lt;/span&gt;
-&lt;span style="color: #009900"&gt;PLUGINS&lt;/span&gt;&lt;span style="color: #990000"&gt;=[&lt;/span&gt;&lt;span style="color: #FF0000"&gt;"asciidoc_reader"&lt;/span&gt;&lt;span style="color: #990000"&gt;]&lt;/span&gt;
-&lt;span style="color: #009900"&gt;AUTHOR&lt;/span&gt;&lt;span style="color: #990000"&gt;=&lt;/span&gt;&lt;span style="color: #FF0000"&gt;"Me"&lt;/span&gt;
+ASCIIDOC_BACKEND &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #FF0000"&gt;"html"&lt;/span&gt;
+AUTHOR &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #FF0000"&gt;"Mathieu Kerjouan"&lt;/span&gt;
+OUTPUT_PATH &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #FF0000"&gt;"./niamtokik.github.io"&lt;/span&gt;
+PATH &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #FF0000"&gt;"./website"&lt;/span&gt;
+PLUGINS &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #990000"&gt;[&lt;/span&gt;&lt;span style="color: #FF0000"&gt;"asciidoc_reader"&lt;/span&gt;&lt;span style="color: #990000"&gt;]&lt;/span&gt;
+PLUGIN_PATHS &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #990000"&gt;[&lt;/span&gt;&lt;span style="color: #FF0000"&gt;"./pelican-plugins"&lt;/span&gt;&lt;span style="color: #990000"&gt;]&lt;/span&gt;
+SITENAME &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #FF0000"&gt;"-- Explicit Programming"&lt;/span&gt;
+SITESUBTITLE &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #FF0000"&gt;"Questions, Answers and Reflexions."&lt;/span&gt;
+SITEURL &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #FF0000"&gt;"https://niamtokik.github.io"&lt;/span&gt;
+THEME &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #FF0000"&gt;"./pelican-themes/sneakyidea"&lt;/span&gt;
 __EOF__&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class="admonitionblock"&gt;
+&lt;table&gt;&lt;tr&gt;
+&lt;td class="icon"&gt;
+&lt;div class="title"&gt;Note&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class="content"&gt;asciidoc seems buggy with source-highlight command. You need
+to force backend to &lt;code&gt;html&lt;/code&gt; else you&amp;#8217;ll have some issue with block
+generation.&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="title"&gt;Pelican test configuration file (dev)&lt;/div&gt;
 &lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.6
@@ -127,18 +147,25 @@ by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite --&gt;
 &lt;pre&gt;&lt;tt&gt;cat &lt;span style="color: #990000"&gt;&amp;gt;&amp;gt;&lt;/span&gt; pelicanf_dev&lt;span style="color: #990000"&gt;.&lt;/span&gt;py &lt;span style="color: #990000"&gt;&amp;lt;&amp;lt;&lt;/span&gt; __EOF__
-SITESUBTITLE &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #FF0000"&gt;"my title"&lt;/span&gt;
-PATH &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #FF0000"&gt;"website"&lt;/span&gt;
-PLUGIN_PATH &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #990000"&gt;[&lt;/span&gt;&lt;span style="color: #FF0000"&gt;"./pelican-plugins"&lt;/span&gt;&lt;span style="color: #990000"&gt;]&lt;/span&gt;
+ASCIIDOC_BACKEND &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #FF0000"&gt;"html"&lt;/span&gt;
+OUTPUT_PATH &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #FF0000"&gt;"./niamtokik.github.io_dev"&lt;/span&gt;
+PATH &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #FF0000"&gt;"./website"&lt;/span&gt;
 PLUGINS &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #990000"&gt;[&lt;/span&gt;&lt;span style="color: #FF0000"&gt;"asciidoc_reader"&lt;/span&gt;&lt;span style="color: #990000"&gt;]&lt;/span&gt;
-AUTHOR &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #FF0000"&gt;"Me"&lt;/span&gt;
+PLUGIN_PATHS &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #990000"&gt;[&lt;/span&gt;&lt;span style="color: #FF0000"&gt;"./pelican-plugins"&lt;/span&gt;&lt;span style="color: #990000"&gt;]&lt;/span&gt;
 RELATIVE_URLS &lt;span style="color: #990000"&gt;=&lt;/span&gt; True
+SITENAME &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #FF0000"&gt;"-- Explicit Programming"&lt;/span&gt;
+SITESUBTITLE &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #FF0000"&gt;"Questions, Answers and Reflexions."&lt;/span&gt;
+THEME &lt;span style="color: #990000"&gt;=&lt;/span&gt; &lt;span style="color: #FF0000"&gt;"./pelican-themes/sneakyidea"&lt;/span&gt;
 __EOF__&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect1"&gt;
 &lt;h2 id="_get_asciidoc_reader_module"&gt;Get asciidoc_reader module&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;&lt;p&gt;I prefer asciidoc, I write all my documentation and training support
+with it, and currently, I didn&amp;#8217;t see others alternatives. Pelican can
+use asciidoc (asciidoc used python2, its why we need to make
+separate virtualenv with python-2.7).&lt;/p&gt;&lt;/div&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.6
 by Lorenzo Bettini
@@ -146,6 +173,17 @@ http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite --&gt;
 &lt;pre&gt;&lt;tt&gt;cd repositories
 git clone https&lt;span style="color: #990000"&gt;:&lt;/span&gt;//github&lt;span style="color: #990000"&gt;.&lt;/span&gt;com/getpelican/pelican-plugins&lt;span style="color: #990000"&gt;.&lt;/span&gt;git&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_get_pelican_themes"&gt;Get pelican themes&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite --&gt;
+&lt;pre&gt;&lt;tt&gt;&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect1"&gt;
@@ -166,31 +204,110 @@ mkdir website/content/pages&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;div class="sect1"&gt;
 &lt;h2 id="_makefile_creation"&gt;Makefile creation&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;&lt;p&gt;Makefile is important here. Pelican isn&amp;#8217;t easy to configure (really).
+So I&amp;#8217;ve made simple Makefile helper to deploy and add automatically
+new pages and articles.&lt;/p&gt;&lt;/div&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.6
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite --&gt;
-&lt;pre&gt;&lt;tt&gt;REPOSITORY &lt;span style="color: #990000"&gt;?=&lt;/span&gt; niamtokik.github.io
+&lt;pre&gt;&lt;tt&gt;&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;# Makefile helper to pelican static site generator                   #&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
+REPOSITORY &lt;span style="color: #990000"&gt;?=&lt;/span&gt; niamtokik.github.io
+GITHUB &lt;span style="color: #990000"&gt;?=&lt;/span&gt; git@github.com&lt;span style="color: #990000"&gt;:&lt;/span&gt;niamtokik&lt;span style="color: #990000"&gt;/&lt;/span&gt;&lt;span style="color: #009900"&gt;$(REPOSITORY)&lt;/span&gt;.git
 WEBSITE &lt;span style="color: #990000"&gt;?=&lt;/span&gt; website
 
 .ifndef EDITOR
 &lt;span style="color: #990000"&gt;EDITOR :=&lt;/span&gt; mg
 .endif
 
-&lt;span style="color: #990000"&gt;prod:&lt;/span&gt;
-        &lt;span style="color: #990000"&gt;.&lt;/span&gt;/bin/pelican
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;# usage&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
+&lt;span style="color: #990000"&gt;help:&lt;/span&gt;
+        @echo &lt;span style="color: #FF0000"&gt;"usage: make [init|prod|dev|deploy]"&lt;/span&gt;
 
-&lt;span style="color: #990000"&gt;dev:&lt;/span&gt;
-        &lt;span style="color: #990000"&gt;.&lt;/span&gt;/bin/pelican -s peliconf_dev.py
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;# build prod release: need pelicanconf.py&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
+&lt;span style="color: #990000"&gt;prod:&lt;/span&gt; &lt;span style="color: #009900"&gt;$(REPOSITORY)&lt;/span&gt;
+        &lt;span style="color: #990000"&gt;.&lt;/span&gt;/bin/pelican -o &lt;span style="color: #009900"&gt;$(REPOSITORY)&lt;/span&gt;
 
-&lt;span style="color: #990000"&gt;article:&lt;/span&gt;
-        touch &lt;span style="color: #009900"&gt;$(WEBSITE)/$(TITLE)&lt;/span&gt;.asciidoc
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;# build dev release: need pelicanconf_dev.py&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
+&lt;span style="color: #990000"&gt;dev:&lt;/span&gt; pelicanconf_dev.py
+        &lt;span style="color: #990000"&gt;.&lt;/span&gt;/bin/pelican -s pelicanconf_dev.py -o &lt;span style="color: #009900"&gt;$(REPOSITORY)&lt;/span&gt;_dev
 
+&lt;span style="color: #990000"&gt;pelicanconf_dev.py:&lt;/span&gt;
+        @echo &lt;span style="color: #FF0000"&gt;"error! pelicanconf_dev.py doesn't exist!"&lt;/span&gt;
+
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;# repository clone&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
+&lt;span style="color: #009900"&gt;$(REPOSITORY)&lt;/span&gt;&lt;span style="color: #990000"&gt;:&lt;/span&gt;
+        git clone &lt;span style="color: #009900"&gt;$(GITHUB)&lt;/span&gt;
+
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;# init functions&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
+&lt;span style="color: #990000"&gt;init:&lt;/span&gt; bootstrap init-plugins init-themes init-website init-template
+
+&lt;span style="color: #990000"&gt;init-plugins:&lt;/span&gt; pelican-plugins
+
+&lt;span style="color: #990000"&gt;init-themes:&lt;/span&gt; pelican-themes
+
+&lt;span style="color: #990000"&gt;init-website:&lt;/span&gt; website/content/category website/content/pages
+
+&lt;span style="color: #990000"&gt;init-template:&lt;/span&gt; template/page.asciidoc template/article.asciidoc
+
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;# website directory&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
+&lt;span style="color: #990000"&gt;website:&lt;/span&gt;
+        mkdir &lt;span style="color: #009900"&gt;$@&lt;/span&gt;
+
+website/content&lt;span style="color: #990000"&gt;:&lt;/span&gt; website
+        mkdir &lt;span style="color: #009900"&gt;$@&lt;/span&gt;
+
+website/content/category&lt;span style="color: #990000"&gt;:&lt;/span&gt; website/content
+        mkdir &lt;span style="color: #009900"&gt;$@&lt;/span&gt;
+
+website/content/pages&lt;span style="color: #990000"&gt;:&lt;/span&gt; website/content
+        mkdir &lt;span style="color: #009900"&gt;$@&lt;/span&gt;
+
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;# template directory&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
+&lt;span style="color: #990000"&gt;template:&lt;/span&gt;
+        mkdir template
+
+template/page.asciidoc&lt;span style="color: #990000"&gt;:&lt;/span&gt; template
+        touch &lt;span style="color: #009900"&gt;$@&lt;/span&gt;
+
+template/article.asciidoc&lt;span style="color: #990000"&gt;:&lt;/span&gt; template
+        touch &lt;span style="color: #009900"&gt;$@&lt;/span&gt;
+
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;# pelican external plugin: need git&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
+&lt;span style="color: #990000"&gt;pelican-plugins:&lt;/span&gt;
+&lt;span style="color: #990000"&gt;        git clone https:&lt;/span&gt;//github.com/getpelican/pelican-plugins.git
+
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;# pelican external themes: need git&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
+&lt;span style="color: #990000"&gt;pelican-themes:&lt;/span&gt;
+&lt;span style="color: #990000"&gt;        git clone https:&lt;/span&gt;//github.com/niamtokik/pelican-themes.git
+
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;# article and page creation helper&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
 .ifndef TITLE
 TITLE &lt;span style="color: #990000"&gt;!=&lt;/span&gt; date &lt;span style="color: #990000"&gt;+&lt;/span&gt;&lt;span style="color: #FF0000"&gt;"%Y-%m-%dT%H:%M:%S"&lt;/span&gt;
 .endif
-
 &lt;span style="color: #990000"&gt;article:&lt;/span&gt;
         touch &lt;span style="color: #009900"&gt;$(WEBSITE)/$(TITLE)&lt;/span&gt;.asciidoc
         &lt;span style="color: #009900"&gt;$(EDITOR)&lt;/span&gt; &lt;span style="color: #009900"&gt;$(WEBSITE)/$(TITLE)&lt;/span&gt;.asciidoc
@@ -199,25 +316,21 @@ TITLE &lt;span style="color: #990000"&gt;!=&lt;/span&gt; date &lt;span style="co
         touch &lt;span style="color: #009900"&gt;$(WEBSITE)/pages/$(TITLE)&lt;/span&gt;.asciidoc
         &lt;span style="color: #009900"&gt;$(EDITOR)&lt;/span&gt; &lt;span style="color: #009900"&gt;$(WEBSITE)/pages/$(TITLE)&lt;/span&gt;.asciidoc
 
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;# python virtualenv bootstrap helper&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
 &lt;span style="color: #990000"&gt;bootstrap:&lt;/span&gt;
         virtualenv &lt;span style="color: #990000"&gt;.&lt;/span&gt;
         &lt;span style="color: #990000"&gt;.&lt;/span&gt;/bin/pip install pelican
 
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;# deploy repository in production: need git&lt;/span&gt;&lt;/span&gt;
+&lt;span style="font-style: italic"&gt;&lt;span style="color: #9A1900"&gt;######################################################################&lt;/span&gt;&lt;/span&gt;
 &lt;span style="color: #990000"&gt;deploy:&lt;/span&gt; prod
-        cd &lt;span style="color: #009900"&gt;$(REPOSITORY)&lt;/span&gt;
-        git push&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        cd &lt;span style="color: #009900"&gt;$(REPOSITORY)&lt;/span&gt; &lt;span style="color: #990000"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style="color: #990000"&gt;\&lt;/span&gt;
+                git add &lt;span style="color: #990000"&gt;.&lt;/span&gt; &lt;span style="color: #990000"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style="color: #990000"&gt;\&lt;/span&gt;
+                git commit &lt;span style="color: #990000"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style="color: #990000"&gt;\&lt;/span&gt;
+                git push&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="_making_templates"&gt;Making templates&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;&lt;!-- Generator: GNU source-highlight 3.1.6
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite --&gt;
-&lt;pre&gt;&lt;tt&gt;cd repositories
-mkdir template&lt;/tt&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</content><category term="openbsd"></category><category term="pelican"></category><category term="python"></category><category term="coding"></category></entry></feed>
+</content><category term="openbsd"></category><category term="pelican"></category><category term="python"></category><category term="coding"></category><category term="makefile"></category></entry></feed>

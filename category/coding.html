@@ -31,7 +31,7 @@
         <aside id="featured" class="body"><article>
                 <h1 class="entry-title"><a href="https://niamtokik.github.io/openbsd-pelican-asciidoc.html">Using Pelican on OpenBSD-current with Asciidoc and github.io</a></h1> 
 <footer class="post-info">
-        <abbr class="published" title="2017-02-23T00:00:00+00:00">
+        <abbr class="published" title="2017-02-23T10:00:00+00:00">
                 Thu 23 February 2017
         </abbr>
 
@@ -39,7 +39,7 @@
                 By <a class="url fn" href="https://niamtokik.github.io/author/mathieu-kerjouan.html">Mathieu Kerjouan</a>
         </address>
 <p>In <a href="https://niamtokik.github.io/category/coding.html">coding</a>. </p>
-<p>tags: <a href="https://niamtokik.github.io/tag/openbsd.html">openbsd</a><a href="https://niamtokik.github.io/tag/pelican.html">pelican</a><a href="https://niamtokik.github.io/tag/python.html">python</a><a href="https://niamtokik.github.io/tag/coding.html">coding</a></p></p>
+<p>tags: <a href="https://niamtokik.github.io/tag/openbsd.html">openbsd</a><a href="https://niamtokik.github.io/tag/pelican.html">pelican</a><a href="https://niamtokik.github.io/tag/python.html">python</a><a href="https://niamtokik.github.io/tag/coding.html">coding</a><a href="https://niamtokik.github.io/tag/makefile.html">makefile</a></p></p>
 </footer><!-- /.post-info -->                <div class="sect1">
 <h2 id="_required_packages">Required packages</h2>
 <div class="sectionbody">
@@ -63,6 +63,8 @@ http://www.gnu.org/software/src-highlite -->
    Makefile
    pelicanconf<span style="color: #990000">.</span>py
    pelicanconf_dev<span style="color: #990000">.</span>py
+   pelican-plugins<span style="color: #990000">/</span>
+   pelican-themes<span style="color: #990000">/</span>
    template<span style="color: #990000">/</span>
      page<span style="color: #990000">.</span>asciidoc
      article<span style="color: #990000">.</span>asciidoc
@@ -106,11 +108,27 @@ http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt>cd repositories
 cat <span style="color: #990000">&gt;&gt;</span> pelicanconf<span style="color: #990000">.</span>py <span style="color: #990000">&lt;&lt;</span> __EOF__
-<span style="color: #009900">PATH</span><span style="color: #990000">=</span><span style="color: #FF0000">"website"</span>
-<span style="color: #009900">PLUGIN_PATH</span><span style="color: #990000">=[</span><span style="color: #FF0000">"./pelican-plugins"</span><span style="color: #990000">]</span>
-<span style="color: #009900">PLUGINS</span><span style="color: #990000">=[</span><span style="color: #FF0000">"asciidoc_reader"</span><span style="color: #990000">]</span>
-<span style="color: #009900">AUTHOR</span><span style="color: #990000">=</span><span style="color: #FF0000">"Me"</span>
+ASCIIDOC_BACKEND <span style="color: #990000">=</span> <span style="color: #FF0000">"html"</span>
+AUTHOR <span style="color: #990000">=</span> <span style="color: #FF0000">"Mathieu Kerjouan"</span>
+OUTPUT_PATH <span style="color: #990000">=</span> <span style="color: #FF0000">"./niamtokik.github.io"</span>
+PATH <span style="color: #990000">=</span> <span style="color: #FF0000">"./website"</span>
+PLUGINS <span style="color: #990000">=</span> <span style="color: #990000">[</span><span style="color: #FF0000">"asciidoc_reader"</span><span style="color: #990000">]</span>
+PLUGIN_PATHS <span style="color: #990000">=</span> <span style="color: #990000">[</span><span style="color: #FF0000">"./pelican-plugins"</span><span style="color: #990000">]</span>
+SITENAME <span style="color: #990000">=</span> <span style="color: #FF0000">"-- Explicit Programming"</span>
+SITESUBTITLE <span style="color: #990000">=</span> <span style="color: #FF0000">"Questions, Answers and Reflexions."</span>
+SITEURL <span style="color: #990000">=</span> <span style="color: #FF0000">"https://niamtokik.github.io"</span>
+THEME <span style="color: #990000">=</span> <span style="color: #FF0000">"./pelican-themes/sneakyidea"</span>
 __EOF__</tt></pre></div></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">asciidoc seems buggy with source-highlight command. You need
+to force backend to <code>html</code> else you&#8217;ll have some issue with block
+generation.</td>
+</tr></table>
+</div>
 <div class="listingblock">
 <div class="title">Pelican test configuration file (dev)</div>
 <div class="content"><!-- Generator: GNU source-highlight 3.1.6
@@ -118,18 +136,25 @@ by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt>cat <span style="color: #990000">&gt;&gt;</span> pelicanf_dev<span style="color: #990000">.</span>py <span style="color: #990000">&lt;&lt;</span> __EOF__
-SITESUBTITLE <span style="color: #990000">=</span> <span style="color: #FF0000">"my title"</span>
-PATH <span style="color: #990000">=</span> <span style="color: #FF0000">"website"</span>
-PLUGIN_PATH <span style="color: #990000">=</span> <span style="color: #990000">[</span><span style="color: #FF0000">"./pelican-plugins"</span><span style="color: #990000">]</span>
+ASCIIDOC_BACKEND <span style="color: #990000">=</span> <span style="color: #FF0000">"html"</span>
+OUTPUT_PATH <span style="color: #990000">=</span> <span style="color: #FF0000">"./niamtokik.github.io_dev"</span>
+PATH <span style="color: #990000">=</span> <span style="color: #FF0000">"./website"</span>
 PLUGINS <span style="color: #990000">=</span> <span style="color: #990000">[</span><span style="color: #FF0000">"asciidoc_reader"</span><span style="color: #990000">]</span>
-AUTHOR <span style="color: #990000">=</span> <span style="color: #FF0000">"Me"</span>
+PLUGIN_PATHS <span style="color: #990000">=</span> <span style="color: #990000">[</span><span style="color: #FF0000">"./pelican-plugins"</span><span style="color: #990000">]</span>
 RELATIVE_URLS <span style="color: #990000">=</span> True
+SITENAME <span style="color: #990000">=</span> <span style="color: #FF0000">"-- Explicit Programming"</span>
+SITESUBTITLE <span style="color: #990000">=</span> <span style="color: #FF0000">"Questions, Answers and Reflexions."</span>
+THEME <span style="color: #990000">=</span> <span style="color: #FF0000">"./pelican-themes/sneakyidea"</span>
 __EOF__</tt></pre></div></div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_get_asciidoc_reader_module">Get asciidoc_reader module</h2>
 <div class="sectionbody">
+<div class="paragraph"><p>I prefer asciidoc, I write all my documentation and training support
+with it, and currently, I didn&#8217;t see others alternatives. Pelican can
+use asciidoc (asciidoc used python2, its why we need to make
+separate virtualenv with python-2.7).</p></div>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight 3.1.6
 by Lorenzo Bettini
@@ -137,6 +162,17 @@ http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt>cd repositories
 git clone https<span style="color: #990000">:</span>//github<span style="color: #990000">.</span>com/getpelican/pelican-plugins<span style="color: #990000">.</span>git</tt></pre></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_get_pelican_themes">Get pelican themes</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt></tt></pre></div></div>
 </div>
 </div>
 <div class="sect1">
@@ -157,31 +193,110 @@ mkdir website/content/pages</tt></pre></div></div>
 <div class="sect1">
 <h2 id="_makefile_creation">Makefile creation</h2>
 <div class="sectionbody">
+<div class="paragraph"><p>Makefile is important here. Pelican isn&#8217;t easy to configure (really).
+So I&#8217;ve made simple Makefile helper to deploy and add automatically
+new pages and articles.</p></div>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight 3.1.6
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt>REPOSITORY <span style="color: #990000">?=</span> niamtokik.github.io
+<pre><tt><span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"># Makefile helper to pelican static site generator                   #</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
+REPOSITORY <span style="color: #990000">?=</span> niamtokik.github.io
+GITHUB <span style="color: #990000">?=</span> git@github.com<span style="color: #990000">:</span>niamtokik<span style="color: #990000">/</span><span style="color: #009900">$(REPOSITORY)</span>.git
 WEBSITE <span style="color: #990000">?=</span> website
 
 .ifndef EDITOR
 <span style="color: #990000">EDITOR :=</span> mg
 .endif
 
-<span style="color: #990000">prod:</span>
-        <span style="color: #990000">.</span>/bin/pelican
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"># usage</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
+<span style="color: #990000">help:</span>
+        @echo <span style="color: #FF0000">"usage: make [init|prod|dev|deploy]"</span>
 
-<span style="color: #990000">dev:</span>
-        <span style="color: #990000">.</span>/bin/pelican -s peliconf_dev.py
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"># build prod release: need pelicanconf.py</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
+<span style="color: #990000">prod:</span> <span style="color: #009900">$(REPOSITORY)</span>
+        <span style="color: #990000">.</span>/bin/pelican -o <span style="color: #009900">$(REPOSITORY)</span>
 
-<span style="color: #990000">article:</span>
-        touch <span style="color: #009900">$(WEBSITE)/$(TITLE)</span>.asciidoc
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"># build dev release: need pelicanconf_dev.py</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
+<span style="color: #990000">dev:</span> pelicanconf_dev.py
+        <span style="color: #990000">.</span>/bin/pelican -s pelicanconf_dev.py -o <span style="color: #009900">$(REPOSITORY)</span>_dev
 
+<span style="color: #990000">pelicanconf_dev.py:</span>
+        @echo <span style="color: #FF0000">"error! pelicanconf_dev.py doesn't exist!"</span>
+
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"># repository clone</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
+<span style="color: #009900">$(REPOSITORY)</span><span style="color: #990000">:</span>
+        git clone <span style="color: #009900">$(GITHUB)</span>
+
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"># init functions</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
+<span style="color: #990000">init:</span> bootstrap init-plugins init-themes init-website init-template
+
+<span style="color: #990000">init-plugins:</span> pelican-plugins
+
+<span style="color: #990000">init-themes:</span> pelican-themes
+
+<span style="color: #990000">init-website:</span> website/content/category website/content/pages
+
+<span style="color: #990000">init-template:</span> template/page.asciidoc template/article.asciidoc
+
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"># website directory</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
+<span style="color: #990000">website:</span>
+        mkdir <span style="color: #009900">$@</span>
+
+website/content<span style="color: #990000">:</span> website
+        mkdir <span style="color: #009900">$@</span>
+
+website/content/category<span style="color: #990000">:</span> website/content
+        mkdir <span style="color: #009900">$@</span>
+
+website/content/pages<span style="color: #990000">:</span> website/content
+        mkdir <span style="color: #009900">$@</span>
+
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"># template directory</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
+<span style="color: #990000">template:</span>
+        mkdir template
+
+template/page.asciidoc<span style="color: #990000">:</span> template
+        touch <span style="color: #009900">$@</span>
+
+template/article.asciidoc<span style="color: #990000">:</span> template
+        touch <span style="color: #009900">$@</span>
+
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"># pelican external plugin: need git</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
+<span style="color: #990000">pelican-plugins:</span>
+<span style="color: #990000">        git clone https:</span>//github.com/getpelican/pelican-plugins.git
+
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"># pelican external themes: need git</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
+<span style="color: #990000">pelican-themes:</span>
+<span style="color: #990000">        git clone https:</span>//github.com/niamtokik/pelican-themes.git
+
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"># article and page creation helper</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
 .ifndef TITLE
 TITLE <span style="color: #990000">!=</span> date <span style="color: #990000">+</span><span style="color: #FF0000">"%Y-%m-%dT%H:%M:%S"</span>
 .endif
-
 <span style="color: #990000">article:</span>
         touch <span style="color: #009900">$(WEBSITE)/$(TITLE)</span>.asciidoc
         <span style="color: #009900">$(EDITOR)</span> <span style="color: #009900">$(WEBSITE)/$(TITLE)</span>.asciidoc
@@ -190,25 +305,21 @@ TITLE <span style="color: #990000">!=</span> date <span style="color: #990000">+
         touch <span style="color: #009900">$(WEBSITE)/pages/$(TITLE)</span>.asciidoc
         <span style="color: #009900">$(EDITOR)</span> <span style="color: #009900">$(WEBSITE)/pages/$(TITLE)</span>.asciidoc
 
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"># python virtualenv bootstrap helper</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
 <span style="color: #990000">bootstrap:</span>
         virtualenv <span style="color: #990000">.</span>
         <span style="color: #990000">.</span>/bin/pip install pelican
 
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
+<span style="font-style: italic"><span style="color: #9A1900"># deploy repository in production: need git</span></span>
+<span style="font-style: italic"><span style="color: #9A1900">######################################################################</span></span>
 <span style="color: #990000">deploy:</span> prod
-        cd <span style="color: #009900">$(REPOSITORY)</span>
-        git push</tt></pre></div></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_making_templates">Making templates</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.6
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><tt>cd repositories
-mkdir template</tt></pre></div></div>
+        cd <span style="color: #009900">$(REPOSITORY)</span> <span style="color: #990000">&amp;&amp;</span> <span style="color: #990000">\</span>
+                git add <span style="color: #990000">.</span> <span style="color: #990000">&amp;&amp;</span> <span style="color: #990000">\</span>
+                git commit <span style="color: #990000">&amp;&amp;</span> <span style="color: #990000">\</span>
+                git push</tt></pre></div></div>
 </div>
 </div>
 
