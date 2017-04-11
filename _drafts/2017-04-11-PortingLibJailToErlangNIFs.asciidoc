@@ -1,0 +1,232 @@
+= Porting libjail to Erlang with NIFs method
+:author:    Mathieu Kerjouan <contact@steepath.eu>
+:twitter:   https://twitter.com/niamtokik
+:backend:   slidy
+:max-width: 50em
+:icons:
+:iconsdir: /usr/local/etc/asciidoc/images/icons
+:images:
+:imagesdir: ./img/
+:copyright: Steepath <contact@steepath.eu>
+:copyright: Mathieu Kerjouan <contact@steepath.eu>
+
+== Introduction
+
+Jails are a beautiful way to isolate applications on FreeBSD. Like all
+containers technology, jails can group and isolate some process
+running on an host.
+
+On Linux, you have docker, written in Go. This project use all linux
+kernel functionality to isolate and manage containers based on
+namespace and cgroups technogies.
+
+So, my project is pretty simple. I love Erlang, and I love FreeBSD,
+can we connect libjail (one frontend to low-level jail management) to
+Erlang beam throught NIFs (or/and ports)?
+
+I want to start/stop/restart jails and get/set parameters with Erlang
+functions.
+
+== How to start?
+
+Before starting any projects, we need documentation. We are lucky!
+These two projects have lot of serious documentation about
+everything.
+
+=== FreeBSD Documentation and Source Code
+
+What libraries we have in man pages?
+
+ * https://www.freebsd.org/cgi/man.cgi?query=jail&sektion=3
+ * https://www.freebsd.org/cgi/man.cgi?query=jail&sektion=2
+
+Is some documentation exist on freebsd wiki?
+
+ * https://wiki.freebsd.org/Jails
+
+Where is stored userland source code?
+
+ * https://svnweb.freebsd.org/base/releng/11.0/lib/libjail/
+ * https://svnweb.freebsd.org/base/releng/11.0/usr.sbin/jail/
+ * https://svnweb.freebsd.org/base/releng/11.0/usr.sbin/jls/
+
+Where is stored kernelland source code?
+
+ * https://svnweb.freebsd.org/base/releng/11.0/sys/kern/kern_jail.c
+ * https://svnweb.freebsd.org/base/releng/11.0/sys/sys/jail.h
+
+How works jails?
+
+ * https://wiki.freebsd.org/VladimirKrstulja/Guides/Jails
+ * https://www.freebsd.org/doc/handbook/jails.html
+ * https://www.freebsd.org/doc/handbook/jails-build.html
+
+=== Erlang Documentation and Source Code
+
+Erlang has multiple methods to talk to outside world. The more secure
+approach is to use ports methods. The less secure but more performant
+one (and much more risky) is NIFs.
+
+Documentation about the BEAM?
+
+ * https://github.com/happi/theBeamBook
+
+Documentation about NIFs?
+
+ * http://erlang.org/doc/tutorial/nif.html
+ * http://erlang.org/doc/man/erl_nif.html
+
+== Managing project
+
+I use rebar3 for this project. erlang.mk work pretty well too, but I
+want to use rebar3 for fun.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+rebar3 new app name=erlang-jail
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+I use also fossil on my side and, when my code is working, convert it
+to git.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd erlang-jail
+fossil init erlang-jail.fossil
+fossil open erlang-jail.fossil
+# you can add now your file
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+== Let's go!
+
+Before interconnect Erlang with NIFs, I need to check how libjail
+works. I will just test 2 simples functions: `int jail_getid(const
+char*)` and `char *jail_getname(int)`. Let's write a simple C code:
+
+[c]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#include <stdio.h>      // printf
+#include <sys/param.h>  //
+#include <sys/jail.h>   // needed for libjail (see man page)
+#include <jail.h>       //
+
+int
+main(void) {
+  printf("jail id: %d\n", jail_getid("myjail"));
+  printf("jail name: %s\n", jail_getname(1));
+}
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Compile your code:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cc -ljail -o jailtset jailtest.c
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can now start a jail for testing this code:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+jail -c name=myjail path=/ persist
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you have only this jail running, your program will output something
+like that:
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1
+myjail
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+== Integrating this code in Erlang side
+
+[makefile]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+INCLUDE = -I/usr/local/lib/erlang/usr/include
+LIB = -ljail
+CC_OPTS = -fpic -shared -Wall
+
+jail_nif.so!
+        cc $(LIB) $(INCLUDE) $(CC_OPTS) -o$@ jail.c jail_nif.c
+
+clean:
+        rm jail_nif.so
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[c]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#include <sys/param.h>
+#include <sys/jail.h>
+#include <jail.h>
+
+extern char jail_errmsg[];
+
+int
+getid(char *name) {
+  return jail_getid(name);
+}
+
+char *
+getname(int jid) {
+  char *ret = jail_getname(jid);
+  if (ret)
+    return ret;
+  else
+    return "";
+}	      
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[c]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#include <erl_nif.h>
+#define NAME_SIZE 1024
+
+extern int getid(char *);
+extern char * getname(int);
+
+static ERL_NIF_TERM
+getid_nif(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[]) {
+    char *name = enif_alloc(NAME_SIZE);
+    int ret;
+    if (!enif_get_string(env, argv[0], name, NAME_SIZE, ERL_NIF_LATIN1))
+      return enif_make_badarg(env);
+    ret = getid(name);
+    return enif_make_int(env, ret);
+}
+
+static ERL_NIF_TERM
+getname_nif(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[]) {
+    int id;
+        char *ret;
+
+    if (!enif_get_int(env, argv[0], &id))
+            return enif_make_badarg(env);
+    ret = getname(id);
+    return enif_make_string(env, ret, ERL_NIF_LATIN1);
+}
+
+static ErlNifFunc
+nif_funcs[] = {
+    {"getid", 1, getid_nif},
+    {"getname", 1, getname_nif}
+};
+
+ERL_NIF_INIT(jail, nif_funcs, NULL, NULL, NULL, NULL)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+make
+erlc jail.erl
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[erlang]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+jail:getid("myjail").
+% return 1
+
+jail:getname(1).
+% return myjail
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
