@@ -61,6 +61,13 @@ How works jails?
  * https://www.freebsd.org/doc/handbook/jails.html
  * https://www.freebsd.org/doc/handbook/jails-build.html
 
+Some papers or slides?
+
+ * http://phk.freebsd.dk/pubs/sane2000-jail.pdf
+ * http://phk.freebsd.dk/pubs/jails.pdf
+ * https://www.usenix.org/legacy/event/usenix03/tech/freenix03/full_papers/zec/zec.pdf
+ * https://www.defcon.org/images/defcon-14/dc-14-presentations/DC-14-ike.pdf
+
 === Erlang Documentation and Source Code
 
 Erlang has multiple methods to talk to outside world. The more secure
