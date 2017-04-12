@@ -316,3 +316,17 @@ gdb> run
  * https://ftp.gnu.org/old-gnu/Manuals/gdb/html_node/gdb_28.html
  * http://www.unknownroad.com/rtfm/gdbtut/gdbbreak.html
 
+After doing that, we see more about how works jailparam
+datastructure. First thing, jls implement a new function to initialize
+and update parameters: add_param(). We can add a new breakpoint on it
+to see how this one works:
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gdb> break add_param
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This function tell us lot of things. First, all jail parameters could
+be listed with jailparam_all() function.
+
+ * https://svnweb.freebsd.org/base/releng/11.0/usr.sbin/jls/jls.c?revision=303975&view=markup#l253
