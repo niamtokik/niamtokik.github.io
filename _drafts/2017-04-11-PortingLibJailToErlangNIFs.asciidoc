@@ -84,6 +84,16 @@ Some great videos?
  * https://www.youtube.com/watch?v=qm0mbQbc9Kc
  * https://www.youtube.com/watch?v=_HQfS8efVeg
 
+Is there exist other project who use NIFs or ports?
+
+ * https://github.com/erlang/otp/tree/maint/lib/crypto/c_src
+ * https://github.com/erlang/otp/tree/maint/lib/runtime_tools/c_src
+ * https://github.com/erlang/otp/tree/maint/lib/asn1/c_src
+ * https://github.com/erlang/otp/tree/maint/lib/wx/c_src
+ 
+ * https://github.com/klacke/yaws/tree/master/c_src
+ * https://github.com/Vagabond/erlang-syslog/tree/master/c_src
+
 == Managing project
 
 I use rebar3 for this project. erlang.mk work pretty well too, but I
