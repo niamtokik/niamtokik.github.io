@@ -257,3 +257,62 @@ jail:getid("myjail").
 jail:getname(1).
 % return myjail
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+== How works others functions?
+
+Currently, documentation isn't pretty well written for others
+functions. We'll use gdb to understand how other functions in libjail
+works. Sometime, start debugger to see what a program do before
+implementing it is a good idea.
+
+My first idea was to create a test with some functions from
+documentation and jls commands:
+
+[c]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#include <sys/param.h>
+#include <sys/jail.h>
+#include <jail.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <errno.h>
+#include <sys/errno.h>
+
+int
+main (void) {
+  struct jailparam jp;
+
+  if (jailparam_init(&jp, "jid")<0)
+      printf("error 1\n");
+
+  if (jailparam_import(&jp, "name")<0)
+      printf("error 2\n");
+
+  printf("%d,%s\n", jp.jp_valuelen, jp.jp_value);
+    jailparam_free(&jp, JP_RAWVALUE);
+}
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This one just doesn't works as expected. To see how its works, we'll
+just make jls with GDB debug flag (-g) and start it to list all jails
+running on my system.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /usr/src/usr.sbin/jls
+make CFLAGS+=-g
+gdb /usr/obj/usr/src/usr.sbin/jls/jls
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gdb> break main
+gdb> break print_jail
+gdb> break jailparam_get
+gdb> run
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * https://ftp.gnu.org/old-gnu/Manuals/gdb/html_node/gdb_28.html
+ * http://www.unknownroad.com/rtfm/gdbtut/gdbbreak.html
+
