@@ -75,6 +75,14 @@ Documentation about NIFs?
 
  * http://erlang.org/doc/tutorial/nif.html
  * http://erlang.org/doc/man/erl_nif.html
+ 
+Some great videos?
+ 
+ * https://www.youtube.com/watch?v=RMKSYWz_nPo
+ * https://www.youtube.com/watch?v=41hNS39Xi8s
+ * https://www.youtube.com/watch?v=_Pwlvy3zz9M
+ * https://www.youtube.com/watch?v=qm0mbQbc9Kc
+ * https://www.youtube.com/watch?v=_HQfS8efVeg
 
 == Managing project
 
