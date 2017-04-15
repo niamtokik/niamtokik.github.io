@@ -337,3 +337,105 @@ This function tell us lot of things. First, all jail parameters could
 be listed with jailparam_all() function.
 
  * https://svnweb.freebsd.org/base/releng/11.0/usr.sbin/jls/jls.c?revision=303975&view=markup#l253
+
+== How jail syscalls works?
+
+There exist 5 syscalls to make a jail on FreeBSD:
+
+ * `jail(struct jail *jail)`: create a jail
+ 
+ * `jail_attach(int jid)`: attach current process in jail
+ 
+ * `jail_remove(int jid)`: remove a jail
+ 
+ * `jail_get(struct iovec *iov, uint niov, int flags)`: get parameters
+   of jails
+ 
+ * `jail_set(struct iovec *iov, u_int niov, int flags)`: set parameter
+   of jails
+
+jail datastructure describe a jail, you can found more information on
+it in manual or from header files.
+
+iovec struct is used as key/value pair. First element of the array
+contain the key, and the other one, the value.
+
+[c]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#include <sys/uio.h>
+
+int
+main(void) {
+  /* define an iovec pair */
+  static struct iovec io[2];
+
+  /* define our jid integer */
+  int jid = 1;
+
+  /* key is "jid", and we need to set the length of it */
+  io[0].iov_base = "jid";
+  io[0].iov_len = sizeof("jid");
+
+  /* value is 1, we need to store a pointer to value
+   * and not a direct value
+   */
+  io[1].iov_base = &jid;
+  io[1].iov_len = sizeof(jid);
+}
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+After reading libjail multiple times... I was disapointed about
+abstraction. Simple functions and composition is important. Currently,
+I'm not aware on an existing way for create array of iovec struct as
+key/value pair. So, why not implement it? I will just make a PoC and
+allocate memory from the stack. I don't want to make my day more
+complex by using the heap with malloc/calloc.
+
+[c]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/*
+ * what is an iovec tuple? its only 2 iovec structure
+ * 
+ */
+struct tuple {
+  struct iovec key;
+  struct iovec value;
+};
+
+/*
+ * how to initialize a new iovec?
+ * just return a pointer to iovec structure.
+ */
+struct iovec *
+iovec_init(void) {
+  static struct iovec io;
+  io.iov_base = NULL;
+  io.iov_len = 0;
+  return &io;
+}
+
+/* how to push data in iovec?
+ * take a pointer to iovec struct, add base and len
+ */
+void
+iovec_push(struct iovec *io, void *base, size_t len) {
+  io->iov_base = base;
+  io->iov_len = len;
+}
+
+/* 
+ * how to create a tuple?
+ * set key and value and return a pointer to tuple datastructure
+ */
+struct tuple *
+iovec_tuple(void *key, size_t key_len
+           ,void *value, size_t value_len) {
+  static struct tuple tu;
+  iovec_push(&tu.key, key, key_len);
+  iovec_push(&tu.value, tu.value_len);
+  return &tu;
+}
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+== Rethinking libjail abstraction
+
